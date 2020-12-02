@@ -1,12 +1,12 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import './../../../utils/fonts.css'
 import { theme } from './../../../utils/constants'
 
 const ReactLinkButton = styled(Link)`
   display: block;
-  height: 35px;
-  width: 95px;
+  height: ${props => props.size == 'small' ? '35px' : '45px'};
+  width: ${props => props.size == 'small' ? '95px' : '250px'};
   border-radius: 5px;
   border: ${(props) => {
     if (props.isSolid) {
@@ -42,8 +42,8 @@ const ReactLinkButton = styled(Link)`
 
 const FormButton = styled.button`
   display: block;
-  height: 35px;
-  width: 95px;
+  height: ${props => props.size == 'small' ? '35px' : '45px'};
+  width: ${props => props.size == 'small' ? '95px' : '250px'};
   border-radius: 5px;
   border: ${(props) => {
     if (props.isSolid) {
