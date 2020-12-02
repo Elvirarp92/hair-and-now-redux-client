@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { SalonCard } from './components/molecules'
 
 function App() {
   const cancelTokenSource = axios.CancelToken.source()
@@ -24,7 +25,9 @@ function App() {
 
   return (
     <main>
-      <h1>Placeholder</h1>
+      {salons.map((salon) => (
+        <SalonCard key={salon.id} id={salon.id} name={salon.name}/>
+      ))}
     </main>
   )
 }

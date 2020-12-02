@@ -7,6 +7,7 @@ const CardName = styled.p`
   color: ${props => props.theme.red};
   font-size: 16px;
   font-weight: 300;
+  margin: auto 6px;
 `
 
 CardName.defaultProps = {

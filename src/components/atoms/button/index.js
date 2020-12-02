@@ -1,4 +1,3 @@
-import React from 'react'
 import { ReactLinkButton, FormButton } from './styled'
 
 const Button = ({ ...props }) => {
