@@ -1,33 +1,40 @@
-import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { SalonCard } from './components/molecules'
+import { buildUrl, getRequest } from './services/api.services'
 
 function App() {
-  const cancelTokenSource = axios.CancelToken.source()
-
   const [salons, setSalons] = useState([])
-  const [err, setError] = useState(undefined)
 
-  function refreshSalons() {
-    axios
-      .get(`http://localhost:5000/salons`, { cancelToken: cancelTokenSource.token })
+  useEffect(() => {
+    getRequest(buildUrl('/salons'))
       .then((response) => setSalons(response.data))
-      .catch((err) => {
-        if (axios.isCancel(err)) {
-          console.log('call cancelled')
-        } else {
-          setError(err)
-        }
-      })
-  }
-
-  useEffect(() => refreshSalons(), [])
+      .catch((err) => console.log(err))
+  }, [])
 
   return (
     <main>
-      {salons.map((salon) => (
-        <SalonCard key={salon.id} id={salon.id} name={salon.name}/>
-      ))}
+      {salons &&
+        salons.map((salon) => <SalonCard key={salon.id} id={salon.id} name={salon.name} />)}
+      <div>
+        Icons made by{' '}
+        <a href='https://www.flaticon.com/authors/freepik' title='Freepik'>
+          Freepik
+        </a>{' '}
+        from{' '}
+        <a href='https://www.flaticon.com/' title='Flaticon'>
+          www.flaticon.com
+        </a>
+      </div>
+      <div>
+        Icons made by{' '}
+        <a href='https://www.flaticon.com/authors/gregor-cresnar' title='Gregor Cresnar'>
+          Gregor Cresnar
+        </a>{' '}
+        from{' '}
+        <a href='https://www.flaticon.com/' title='Flaticon'>
+          www.flaticon.com
+        </a>
+      </div>
     </main>
   )
 }
